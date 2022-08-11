@@ -1,0 +1,20 @@
+body {
+    background-color: #000;
+}
+
+#board { 
+    margin: auto;
+    width: 50vw;
+}
+
+/* #move-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px;
+    border: none;
+    background-color: greenyellow;
+    cursor: pointer;
+    border-radius: 1rem;
+} */

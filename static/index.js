@@ -20,3 +20,7 @@ socket.on("status", ({ turn, status }) => {
 socket.on("teams", ({ team1, team2, round }) => {
     document.getElementById("team-info").innerText = `${team1} vs ${team2}\nRound ${round}`
 })
+
+socket.on("reload", () => {
+    document.location.reload()
+})

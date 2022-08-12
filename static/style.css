@@ -7,6 +7,14 @@ body {
     width: 50vw;
 }
 
+#content {
+    width: fit-content;
+    margin: .25rem;
+    padding: 10px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 /* #move-btn {
     position: absolute;
     top: 0;
@@ -18,13 +26,3 @@ body {
     cursor: pointer;
     border-radius: 1rem;
 } */
-
-h4, h2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 10px;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-}

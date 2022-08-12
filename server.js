@@ -11,6 +11,10 @@ let game = new Chess()
 app.use(Express.json())
 app.use(Express.static('./static'));
 
+let team1 = "";
+let team2 = "";
+let round = "";
+
 function updateStatus() {
     io.emit('status', {
         turn: game.turn(),
@@ -40,7 +44,10 @@ app.post("/move", (req, res) => {
         to,
         promotion
     })
-    if (gameMove === null) return res.status(403).json({ error: 1 }).end()
+    if (gameMove === null) {
+        console.log(move)
+        return res.status(403).json({ error: 1 }).end()
+    }
     res.status(200).end()
     io.emit("move", { colour, move: game.fen()})
     updateStatus()
@@ -56,14 +63,21 @@ app.post("/new", (req, res) => {
 })
 
 app.post("/teams", (req, res) => {
-    let { team1, team2, round } = req.body
+    ({ team1, team2, round } = req.body)
     io.emit("teams", { team1, team2, round })
+    res.status(200).end()
+})
+
+app.post("/reload", (req, res) => {
+    if (req.body?.key != "saul") return res.status(403).end()
+    io.emit("reload")
     res.status(200).end()
 })
 
 io.on('connection', socket => {
     console.log("connected")
     io.emit("move", { colour: "connect", move: game.fen()})
+    io.emit("teams", { team1, team2, round })
     updateStatus()
     socket.on('disconnect', function () {
         console.log('disconnected');
@@ -71,5 +85,5 @@ io.on('connection', socket => {
 })
 
 server.listen(port, () => {
-    console.log(`Listening on *:${port}`);
+    console.log(`Listening on http://localhost:${port}`);
 })

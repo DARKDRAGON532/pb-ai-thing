@@ -101,6 +101,7 @@ class Board(nmd('Board', 'bd score castlingrights bc ep kp')):
 
 
 Entry = nmd('Entry', 'lower upper')
+
 class ChessAI:
     def __init__(self, color: str):
         self.color = color # either "w" or "b"
@@ -234,8 +235,4 @@ class ChessAI:
         return best
     
 
-    
-
-
-    
  
